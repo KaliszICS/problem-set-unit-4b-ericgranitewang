@@ -53,7 +53,7 @@ A hasPiece(int row, int col) method that returns true if there is a piece at the
 A toString() method that prints the board row by row. Each cell should show the tile type, and if a piece is present, append the piece in parentheses, `|`, e.g.:</br>
 ```
 Start | Empty | Bonus | Empty | Empty
-Empty | Penalty | Empty | Empty | Bonus
+Empty | Penalty(Blue Rook) | Empty | Empty | Bonus
 ...
 ```
 
@@ -106,9 +106,9 @@ Has getters for its name, age, and inventory (inventory should return an array o
 The following methods are required:</br>
 
 A size() method which returns the number of pieces in the inventory.</br>
-A pickUp(GameBoard board, int row, int col) method that "picks up" a piece by recording the tile type at that position and adding a new GamePiece with that label to the inventory. The tile should be set to "Empty" after pick-up.</br>
-A discardPiece(GamePiece piece, TileStack tileStack) method that removes the piece from the player's inventory and pushes its label onto the given TileStack as a string. Return true if the piece existed in the inventory. Return false otherwise.</br>
-A returnPiece(GamePiece piece, GameBoard board, int row, int col) method that removes the piece from the inventory and sets the tile at the given board position to the piece's label. Return true if the piece existed in the inventory. Return false otherwise.</br>
+A pickUp(GameBoard board, int row, int col) method that "picks up" a piece by recording the tile type at that position and adding a new GamePiece with that label to the inventory.</br>
+A discardPiece(GamePiece piece) method that removes the piece from the player's inventory. Throw a NullPointerException if the piece does not exist.</br>
+A returnPiece(GamePiece piece, GameBoard board, int row, int col) method that removes the piece from the inventory and sets in on the given tile. Throw a NullPointerException if the piece does not exist.</br>
 A toString() method that prints the player's name, age, and inventory (e.g. "Alex, 14, Red Pawn, Blue Rook, Green Token, Yellow Marker.")</br>
 
 ---
