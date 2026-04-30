@@ -142,6 +142,13 @@ public class GameBoard {
         return pieces[row][col] != null;
     }
 
+    /**
+     * Overrides toString method; expresses the board as a String representation
+     * The board is formatted as tiles separated by |
+     * If a tile has a piece on it, it is appended to the end of the tile in parentheses
+     * @return returns the String representation of the board
+     */
+    @Override
     public String toString () {
         String it = "";
         for (int i = 0; i < board.length; i++) {
@@ -156,4 +163,6 @@ public class GameBoard {
         }
         return it;
     }
+
+
 }
