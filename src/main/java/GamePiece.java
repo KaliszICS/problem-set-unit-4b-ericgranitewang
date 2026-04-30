@@ -1,7 +1,9 @@
+import java.util.Objects;
+
 /**
  * A simple class to represent a game piece
  * @author Eric Wang
- * @version 1.0
+ * @version 1.1
  */
 public class GamePiece {
     private String label;
@@ -60,7 +62,17 @@ public class GamePiece {
      */
     @Override
     public boolean equals(GamePiece other) {
+        //maybe add some more checks ? idk
         return (this.label.equals(other.getLabel()) && this.color.equals(other.getClass())) && this.pointValue==other.getPointValue();
+    }
+
+    /**
+     * New override method for HashCode to make things work better
+     * @return returns the hash of the object
+     */
+    @Override
+    public boolean HashCode() {
+        return Objects.hash(label, color, pointValue);
     }
 
 }
