@@ -1,7 +1,7 @@
 /**
  * A class that represents a game board for board games
  * @author Eric Wang
- * @version 1.0
+ * @version 1.1
  */
 public class GameBoard {
     private String[][] board;
@@ -14,7 +14,7 @@ public class GameBoard {
     public GameBoard(String[][] board) {
         this.board = board;
         // may crash if the board is genuinely zero size
-        pieces = new String[board.length][board[0].length];
+        pieces = new GamePiece[board.length][board[0].length];
     }
     /**
      * Default constructor for GameBoard class
@@ -164,5 +164,37 @@ public class GameBoard {
         return it;
     }
 
+    /**
+     * Method that resets the board and pieces
+     * All tiles on the board except "Start" and "End" are set to empty
+     * All GamePieces on the board are removed
+     */
+    public void resetBoard() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (!(board[i][j].equals("Start") || board[i][j].equals("End"))) {
+                    board[i][j] = "Empty";
+                }
+            }
+        }
+        pieces = new GamePiece[board.length-1][board[0].length-1];
+    }
 
+    /**
+     * Method that fills board based on a given array of tiles
+     * If there aren't enough tiles in the array it loops around to index 0
+     * @param tiles the String array from which tiles are taken and put onto the board
+     */
+    public void fillFrom(String[] tiles) {
+        int iter = 0;
+        if (tiles == null || tiles.length == 0) {
+            return;
+        }
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j] = tiles[iter%tiles.length];
+                iter++;
+            }
+        }
+    }
 }
