@@ -2,7 +2,7 @@ import java.util.*;
 /**
  * A class that stores a stack of event tiles that do special things
  * @author Eric Wang
- * @version 1.0
+ * @version 1.1
  */
 public class TileStack {
     ArrayList<String> stack;
@@ -33,11 +33,12 @@ public class TileStack {
     /**
      * Method that adds a tile to the top of the stack
      * @param tile The String tile that will be added to the stack
+     * @throws NullPointerException Throws NullPointerException if the tile is null
      */
-    public void push(String tile) {
+    public void push(String tile) throws NullPointerException {
         //do nothing if the tile is null or EMPTY?? what does that mean bruv like "" or "empty" or typo
         if (tile == null) {
-            return;
+            throw new NullPointerException("Tile cannot be null");
         }
         stack.add(tile);
     }
@@ -78,7 +79,7 @@ public class TileStack {
 
     /**
      * Overrides toString; method that converts the stack into a String representation
-     * Format goes "element1, element2, ... , elementn"
+     * Format goes "elementn, elementn-1, ... , element1"
      * @return Returns String representation of the stack.
      */
     @Override
