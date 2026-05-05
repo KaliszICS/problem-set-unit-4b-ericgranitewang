@@ -5,14 +5,15 @@ import java.util.*;
  * @version 1.1
  */
 public class TileStack {
-    ArrayList<String> stack;
+    private ArrayList<String> stack;
 
     /**
      * Constructor for TileStack with a provided array of values that is converted into the stack
      * @param stack The String array of values that will become the TileStack
      */
     public TileStack (String[] stack) {
-        this.stack = Arrays.asList(stack);
+        this.stack = new ArrayList<String>();
+        this.stack.addAll(Arrays.asList(stack));
     }
 
     /**
@@ -72,7 +73,10 @@ public class TileStack {
      * @return Returns the stack as a String array
      */
     public String[] removeAll() {
-        String[] temp = stack.toArray();
+        String[] temp = new String[size()];
+        for (int i = 0; i < size(); i++) {
+            temp[i] = stack.get(i);
+        }
         stack = new ArrayList<String>();
         return temp;
     }

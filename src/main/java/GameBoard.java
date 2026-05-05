@@ -11,8 +11,11 @@ public class GameBoard {
      * Constructor for GameBoard given a 2d array of Strings representing the board, sets board to value provided
      * @param board the 2d String array that the game board will be set to
      */
-    public GameBoard(String[][] board) {
+    public GameBoard(String[][] board) throws IllegalArgumentException {
         this.board = board;
+        if ((board.length <= 0 || board[0].length <= 0) || (board.length == 1 && board[0].length == 1)) {
+            throw new IllegalArgumentException("The board must be at least 2 tiles in size");
+        }
         // may crash if the board is genuinely zero size
         pieces = new GamePiece[board.length][board[0].length];
     }
@@ -37,10 +40,12 @@ public class GameBoard {
                 } else {
                     board[i][j] = "Empty";
                 }
+                iter++;
             }
         }
         board[0][0] = "Start";
         board[board.length-1][board[0].length-1] = "End";
+        pieces = new GamePiece[board.length][board[0].length];
     }
 
     /**
@@ -153,13 +158,18 @@ public class GameBoard {
         String it = "";
         for (int i = 0; i < board.length; i++) {
             it += board[i][0];
+            if (hasPiece(i, 0)) {
+                it += "(" + pieces[i][0].toString() + ")";
+            }
             for (int j = 1; j < board[i].length; j++) {
                 it += " | " + board[i][j];
                 if (hasPiece(i, j)) {
                     it += "(" + pieces[i][j].toString() + ")";
                 }
             }
-            it += '\n';
+            if (i != board.length - 1) {
+                it += '\n';
+            }
         }
         return it;
     }
@@ -177,7 +187,7 @@ public class GameBoard {
                 }
             }
         }
-        pieces = new GamePiece[board.length-1][board[0].length-1];
+        pieces = new GamePiece[board.length][board[0].length];
     }
 
     /**

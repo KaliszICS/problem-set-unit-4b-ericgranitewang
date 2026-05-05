@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * A class that represents a player of the board game
@@ -6,9 +6,9 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Player {
-    String name;
-    int age;
-    ArrayList<GamePiece> inventory;
+    private String name;
+    private int age;
+    private ArrayList<GamePiece> inventory;
 
     /**
      * Constructor for Player that takes in name and age and constructs an empty GamePiece ArrayList for the inventory
@@ -30,7 +30,8 @@ public class Player {
     public Player (String name, int age, GamePiece[] inventory) {
         this.name = name;
         this.age = age;
-        this.inventory = inventory.asList;
+        this.inventory = new ArrayList<GamePiece>();
+        this.inventory.addAll(Arrays.asList(inventory));
     }
 
     /**
@@ -54,7 +55,7 @@ public class Player {
      * @return Returns inventory of the player as a GamePiece array
      */
     public GamePiece[] getInventory () {
-        return inventory.toArray();
+        return (GamePiece[])inventory.toArray();
     }
 
     /**
@@ -73,12 +74,12 @@ public class Player {
      * @throws NullPointerException Throws NullPointerException when there is no piece at the given index
      */
     public void pickUp (GameBoard board, int row, int col) throws NullPointerException {
-        GamePiece piece = board.getPiece(row, col);
-        if (piece == null) {
+        // GamePiece piece = board.getPiece(row, col);
+        if (!board.hasPiece(row, col)) {
             throw new NullPointerException("Piece does not exist at the given index");
         }
-        board.removePiece(row, col);
-        inventory.add(piece);
+        // board.removePiece(row, col);
+        inventory.add(board.removePiece(row, col));
     }
 
     /**
@@ -110,6 +111,11 @@ public class Player {
         board.placePiece(piece, row, col);
     }
 
+    /**
+     * Method that overrides toString, expresses the player as a String representation
+     * Format follows name, age, item1, item2, ....
+     * @return Returns the String representation of the Player
+     */
     @Override
     public String toString () {
         String it = name + ", " + age;

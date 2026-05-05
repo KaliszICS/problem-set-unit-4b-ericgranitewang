@@ -61,9 +61,10 @@ public class GamePiece {
      * @return returns true if all three variables are equal, otherwise returns false
      */
     @Override
-    public boolean equals(GamePiece other) {
+    public boolean equals(Object othe) {
+        GamePiece other = (GamePiece)othe;
         //maybe add some more checks ? idk
-        return (this.label.equals(other.getLabel()) && this.color.equals(other.getClass())) && this.pointValue==other.getPointValue();
+        return (this.label.equals(other.getLabel()) && this.color.equals(other.getColor())) && this.pointValue==other.getPointValue();
     }
 
     /**
@@ -71,7 +72,7 @@ public class GamePiece {
      * @return returns the hash of the object
      */
     @Override
-    public boolean HashCode() {
+    public int hashCode() {
         return Objects.hash(label, color, pointValue);
     }
 
