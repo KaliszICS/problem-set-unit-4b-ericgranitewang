@@ -55,7 +55,11 @@ public class Player {
      * @return Returns inventory of the player as a GamePiece array
      */
     public GamePiece[] getInventory () {
-        return (GamePiece[])inventory.toArray();
+        GamePiece[] temp = new GamePiece[size()];
+        for (int i = 0; i < size(); i++) {
+            temp[i] = inventory.get(i);
+        }
+        return temp;
     }
 
     /**
@@ -74,11 +78,9 @@ public class Player {
      * @throws NullPointerException Throws NullPointerException when there is no piece at the given index
      */
     public void pickUp (GameBoard board, int row, int col) throws NullPointerException {
-        // GamePiece piece = board.getPiece(row, col);
         if (!board.hasPiece(row, col)) {
             throw new NullPointerException("Piece does not exist at the given index");
         }
-        // board.removePiece(row, col);
         inventory.add(board.removePiece(row, col));
     }
 

@@ -14,13 +14,23 @@ public class ProblemSet {
 		// System.out.println(among.peek());
 		//gameboard tests
 		GameBoard ohio = new GameBoard();
-		ohio.resetBoard();
-		ohio.fillFrom(new String[]{"skibidy", "sigma", "gyatt"});
+		// ohio.resetBoard();
+		// ohio.fillFrom(new String[]{"skibidy", "sigma", "gyatt"});
 		GamePiece sigma = new GamePiece("sigma", "skibidy", 0);
-		ohio.setTile(3, 1, "alpha");
-		System.out.println(ohio.getPiece(3, 1));
+		GamePiece omega = new GamePiece("omega", "tttsahur", 0);
+		// ohio.setTile(3, 1, "alpha");
+		// System.out.println(ohio.getPiece(3, 1));
 		ohio.placePiece(sigma, 0, 0);
-		System.out.println(ohio.toString());
+		// System.out.println(ohio.removePiece(0, 0).getColor());
+		// System.out.println(ohio.toString());
+		//player tests
+		Player quandale = new Player("Quandale Dingle", 54, new GamePiece[]{sigma, omega});
+		System.out.println(quandale);
+		quandale.discardPiece(sigma);
+		quandale.pickUp(ohio, 0, 0);
+		quandale.returnPiece(omega, ohio, 0, 0);
+		System.out.println(quandale);
+		System.out.println(ohio);
 		GameBoard sus = new GameBoard();
 		// System.out.println(sus.toString());
 		Scanner in = new Scanner(System.in);
