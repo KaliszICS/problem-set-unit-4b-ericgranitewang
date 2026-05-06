@@ -2,7 +2,7 @@ import java.util.*;
 /**
  * A class that stores a stack of event tiles that do special things
  * @author Eric Wang
- * @version 1.1
+ * @version 1.0.3
  */
 public class TileStack {
     private ArrayList<String> stack;

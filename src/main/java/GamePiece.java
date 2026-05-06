@@ -3,7 +3,7 @@ import java.util.Objects;
 /**
  * A simple class to represent a game piece
  * @author Eric Wang
- * @version 1.1
+ * @version 1.0.3
  */
 public class GamePiece {
     private String label;

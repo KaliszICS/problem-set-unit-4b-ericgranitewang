@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * A class that represents a player of the board game
  * @author Eric Wang
- * @version 1.0
+ * @version 1.0.3
  */
 public class Player {
     private String name;

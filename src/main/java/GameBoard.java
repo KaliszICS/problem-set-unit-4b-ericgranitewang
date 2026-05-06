@@ -1,7 +1,7 @@
 /**
  * A class that represents a game board for board games
  * @author Eric Wang
- * @version 1.1
+ * @version 1.1.3
  */
 public class GameBoard {
     private String[][] board;
