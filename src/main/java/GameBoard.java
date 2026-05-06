@@ -10,6 +10,7 @@ public class GameBoard {
     /**
      * Constructor for GameBoard given a 2d array of Strings representing the board, sets board to value provided
      * @param board the 2d String array that the game board will be set to
+     * @throws IllegalArgumentException Throws IllegalArgumentException when the board is too small (size 1,1 or 0) or the user provides a jagged array
      */
     public GameBoard(String[][] board) throws IllegalArgumentException {
         if ((board.length <= 0 || board[0].length <= 0) || (board.length == 1 && board[0].length == 1)) {
