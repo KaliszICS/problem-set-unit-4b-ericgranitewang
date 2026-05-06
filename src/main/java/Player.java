@@ -30,7 +30,8 @@ public class Player {
     public Player (String name, int age, GamePiece[] inventory) {
         this.name = name;
         this.age = age;
-        this.inventory = new ArrayList<GamePiece>().addAll(Arrays.asList(inventory));
+        this.inventory = new ArrayList<GamePiece>();
+        this.inventory.addAll(Arrays.asList(inventory));
     }
 
     /**

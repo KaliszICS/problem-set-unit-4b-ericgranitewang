@@ -65,9 +65,6 @@ public class GamePiece {
         if (othe == null) {
             return false;
         }
-        if (othe.getClass() != this.getClass()) {
-            return false;
-        }
         GamePiece other = (GamePiece)othe; // null ?
         //maybe add some more checks ? idk
         return (this.label.equals(other.getLabel()) && this.color.equals(other.getColor())) && this.pointValue==other.getPointValue();

@@ -17,9 +17,10 @@ public class ProblemSet {
 		// ohio.resetBoard();
 		// ohio.fillFrom(new String[]{"skibidy", "sigma", "gyatt"});
 		GamePiece sigma = new GamePiece("sigma", "skibidy", 0);
-		GamePiece omega = new GamePiece("omega", "tttsahur", 0);
+		GamePiece omega = new GamePiece("sigma", "skibidy", 0);
+		System.out.println(sigma.equals(omega));
 		// ohio.setTile(3, 1, "alpha");
-		// System.out.println(ohio.getPiece(3, 1));
+		System.out.println(ohio.getPiece(3, 1));
 		ohio.placePiece(sigma, 0, 0);
 		// System.out.println(ohio.removePiece(0, 0).getColor());
 		// System.out.println(ohio.toString());
@@ -56,16 +57,6 @@ public class ProblemSet {
 		}
 		in.close();
 	}
-	//do the edge case of 1 and 0 size later!!
-
-	/*
-	Things to ask
-	a) does pickUp in Player remove the piece from the board or does it just clone it
-	b) what does the empty mean in TileStack push()
-	c) can the board be zero in size
-	d) does it matter if everything breaks because the user put in the wrong values
-	e) when to use tilestack in example game
-	*/
 	
 
 }
