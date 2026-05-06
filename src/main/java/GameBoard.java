@@ -15,6 +15,11 @@ public class GameBoard {
         if ((board.length <= 0 || board[0].length <= 0) || (board.length == 1 && board[0].length == 1)) {
             throw new IllegalArgumentException("The board must be at least 2 tiles in size");
         }
+        for (int i = 1; i < board.length ; i++) {
+            if (board[i].length != board[0].length) {
+                throw new IllegalArgumentException("The board must be a rectangular grid");
+            }
+        }
         this.board = board;
         this.pieces = new GamePiece[board.length][board[0].length];
     }
