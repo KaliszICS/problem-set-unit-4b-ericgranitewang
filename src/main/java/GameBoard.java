@@ -16,7 +16,6 @@ public class GameBoard {
             throw new IllegalArgumentException("The board must be at least 2 tiles in size");
         }
         this.board = board;
-        // may crash if the board is genuinely zero size
         this.pieces = new GamePiece[board.length][board[0].length];
     }
     /**
