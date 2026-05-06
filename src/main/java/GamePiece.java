@@ -27,7 +27,7 @@ public class GamePiece {
      * @return returns the label (name) of the piece as a String
      */
     public String getLabel() {
-        return label;
+        return this.label;
     }
 
     /**
@@ -35,7 +35,7 @@ public class GamePiece {
      * @return returns the colour (color) of the piece as a String
      */
     public String getColor() {
-        return color;
+        return this.color;
     }
 
     /**
@@ -43,7 +43,7 @@ public class GamePiece {
      * @return returns the point value (pointValue) of the piece as an int
      */
     public int getPointValue() {
-        return pointValue;
+        return this.pointValue;
     }
 
     /**
@@ -52,22 +52,22 @@ public class GamePiece {
      */
     @Override
     public String toString() {
-        return color + " " + label;
+        return this.color + " " + this.label;
     }
 
     /**
      * Method that checks if two game pieces are equal (all 3 variables must be equal)
-     * @param othe the other GamePiece object to be compared
+     * @param other the other GamePiece object to be compared
      * @return returns true if all three variables are equal, otherwise returns false
      */
     @Override
-    public boolean equals(Object othe) {
-        if (othe == null) {
+    public boolean equals(Object other) {
+        if (other == null) {
             return false;
         }
-        GamePiece other = (GamePiece)othe; 
+        GamePiece othe = (GamePiece)other; 
         //maybe add some more checks ? idk
-        return (this.label.equals(other.getLabel()) && this.color.equals(other.getColor())) && this.pointValue==other.getPointValue();
+        return (this.label.equals(othe.getLabel()) && this.color.equals(othe.getColor())) && this.pointValue==othe.getPointValue();
     }
 
     /**
@@ -76,7 +76,7 @@ public class GamePiece {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(label, color, pointValue);
+        return Objects.hash(this.label, this.color, this.pointValue);
     }
 
 }

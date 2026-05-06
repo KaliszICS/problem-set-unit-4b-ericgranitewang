@@ -140,7 +140,7 @@ public class GameBoard {
      * @return returns true if there is a piece, otherwise returns false if there isn't (if it is null)
      */
     public boolean hasPiece (int row, int col) {
-        return pieces[row][col] != null;
+        return this.pieces[row][col] != null;
     }
 
     /**

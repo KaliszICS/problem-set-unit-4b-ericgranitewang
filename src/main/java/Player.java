@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * A class that represents a player of the board game
  * @author Eric Wang
- * @version 1.0.3
+ * @version 1.0.4
  */
 public class Player {
     private String name;
@@ -18,7 +18,7 @@ public class Player {
     public Player (String name, int age) {
         this.name = name;
         this.age = age;
-        inventory = new ArrayList<GamePiece>();
+        this.inventory = new ArrayList<GamePiece>();
     }
 
     /**
@@ -90,11 +90,11 @@ public class Player {
      * @throws NullPointerException Throws NullPointerException if the piece is not present in the player's inventory
      */
     public void discardPiece (GamePiece piece) throws NullPointerException {
-        int index = inventory.indexOf(piece);
+        int index = this.inventory.indexOf(piece);
         if (index == -1) {
             throw new NullPointerException("Piece must exist in inventory");
         }
-        inventory.remove(index);
+        this.inventory.remove(index);
     }
 
     /**
@@ -120,8 +120,8 @@ public class Player {
      */
     @Override
     public String toString () {
-        String it = name + ", " + age;
-        for (int i = 0; i < size(); i++) {
+        String it = this.name + ", " + this.age;
+        for (int i = 0; i < this.inventory.size(); i++) {
             it += ", " + this.inventory.get(i).toString();
         }
         it += ".";
