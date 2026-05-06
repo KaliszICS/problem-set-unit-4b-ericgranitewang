@@ -30,8 +30,7 @@ public class Player {
     public Player (String name, int age, GamePiece[] inventory) {
         this.name = name;
         this.age = age;
-        this.inventory = new ArrayList<GamePiece>();
-        this.inventory.addAll(Arrays.asList(inventory));
+        this.inventory = new ArrayList<GamePiece>().addAll(Arrays.asList(inventory));
     }
 
     /**
@@ -39,7 +38,7 @@ public class Player {
      * @return Returns String name of player
      */
     public String getName () {
-        return name;
+        return this.name;
     }
 
     /**
@@ -47,7 +46,7 @@ public class Player {
      * @return Returns int age of player
      */
     public int getAge () {
-        return age;
+        return this.age;
     }
 
     /**
@@ -55,9 +54,9 @@ public class Player {
      * @return Returns inventory of the player as a GamePiece array
      */
     public GamePiece[] getInventory () {
-        GamePiece[] temp = new GamePiece[size()];
-        for (int i = 0; i < size(); i++) {
-            temp[i] = inventory.get(i);
+        GamePiece[] temp = new GamePiece[this.inventory.size()];
+        for (int i = 0; i < this.inventory.size(); i++) {
+            temp[i] = this.inventory.get(i);
         }
         return temp;
     }
@@ -67,7 +66,7 @@ public class Player {
      * @return Returns size of inventory (int)
      */
     public int size() {
-        return inventory.size();
+        return this.inventory.size();
     }
 
     /**
@@ -106,10 +105,10 @@ public class Player {
      * @throws NullPointerException Throws NullPointerException when the piece does not exist in the inventory
      */
     public void returnPiece (GamePiece piece, GameBoard board, int row, int col) throws NullPointerException {
-        if (inventory.indexOf(piece) == -1) {
+        if (this.inventory.indexOf(piece) == -1) {
             throw new NullPointerException("Piece must exist in inventory");
         }
-        discardPiece(piece);
+        this.discardPiece(piece);
         board.placePiece(piece, row, col);
     }
 
@@ -122,7 +121,7 @@ public class Player {
     public String toString () {
         String it = name + ", " + age;
         for (int i = 0; i < size(); i++) {
-            it += ", " + inventory.get(i).toString();
+            it += ", " + this.inventory.get(i).toString();
         }
         it += ".";
         return it;

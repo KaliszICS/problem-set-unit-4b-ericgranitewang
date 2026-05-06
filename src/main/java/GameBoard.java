@@ -12,12 +12,12 @@ public class GameBoard {
      * @param board the 2d String array that the game board will be set to
      */
     public GameBoard(String[][] board) throws IllegalArgumentException {
-        this.board = board;
         if ((board.length <= 0 || board[0].length <= 0) || (board.length == 1 && board[0].length == 1)) {
             throw new IllegalArgumentException("The board must be at least 2 tiles in size");
         }
+        this.board = board;
         // may crash if the board is genuinely zero size
-        pieces = new GamePiece[board.length][board[0].length];
+        this.pieces = new GamePiece[board.length][board[0].length];
     }
     /**
      * Default constructor for GameBoard class
@@ -29,23 +29,23 @@ public class GameBoard {
      * All remaining tiles are "Empty"
      */
     public GameBoard() {
-        board = new String[5][5];
+        this.board = new String[5][5];
         int iter = 1;
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[i].length; j++) {
                 if (iter%6 == 0) {
-                    board[i][j] = "Penalty";
+                    this.board[i][j] = "Penalty";
                 } else if (iter%4 == 0) {
-                    board[i][j] = "Bonus";
+                    this.board[i][j] = "Bonus";
                 } else {
-                    board[i][j] = "Empty";
+                    this.board[i][j] = "Empty";
                 }
                 iter++;
             }
         }
-        board[0][0] = "Start";
-        board[board.length-1][board[0].length-1] = "End";
-        pieces = new GamePiece[board.length][board[0].length];
+        this.board[0][0] = "Start";
+        this.board[this.board.length-1][this.board[0].length-1] = "End";
+        this.pieces = new GamePiece[this.board.length][this.board[0].length];
     }
 
     /**
@@ -53,7 +53,7 @@ public class GameBoard {
      * @return returns the number of rows on the board as an int
      */
     public int getRows() {
-        return board.length;
+        return this.board.length;
     }
 
     /**
@@ -61,8 +61,7 @@ public class GameBoard {
      * @return returns the number of columns on the board as an int
      */
     public int getCols() {
-        //might crash if the board is genuinely 0 length
-        return board[0].length;
+        return this.board[0].length;
     }
 
     /**
@@ -73,10 +72,10 @@ public class GameBoard {
      * @throws IndexOutOfBoundsException Throws IndexOutOfBoundsException when the index of the tile isn't located inside the board
      */
     public String getTile(int row, int col) throws IndexOutOfBoundsException {
-        if ((row < 0 || col < 0) || (row >= getRows() || col >= getCols())) {
+        if ((row < 0 || col < 0) || (row >= this.board.length || col >= this.board[0].length)) {
             throw new IndexOutOfBoundsException("Index must be inside the board");
         }
-        return board[row][col];
+        return this.board[row][col];
     }
 
     /**
@@ -88,10 +87,10 @@ public class GameBoard {
      * @throws IndexOutOfBoundsException Throws IndexOutOfBoundsException when index of the tile isn't located inside the board
      */
     public void setTile(int row, int col, String type) throws IndexOutOfBoundsException {
-        if ((row < 0 || col < 0) || (row >= getRows() || col >= getCols())) {
+        if ((row < 0 || col < 0) || (row >= this.board.length || col >= this.board[0].length)) {
             throw new IndexOutOfBoundsException("Index must be inside the board");
         }
-        board[row][col] = type;
+        this.board[row][col] = type;
     }
 
     /**
@@ -106,7 +105,7 @@ public class GameBoard {
         if (piece == null) {
             throw new NullPointerException("piece cannot be null");
         }
-        pieces[row][col] = piece;
+        this.pieces[row][col] = piece;
     }
 
     /**
@@ -117,13 +116,11 @@ public class GameBoard {
      * @throws NullPointerException throws NullPointerException when there is no piece at the given index
      */
     public GamePiece removePiece(int row, int col) throws NullPointerException {
-        if (!hasPiece(row, col)) {
+        if (!this.hasPiece(row, col)) {
             throw new NullPointerException("there must be a piece at the given index");
         }
-        //it might matter if the gamepiece is literally the same one
-        //probably not though
-        GamePiece p = getPiece(row, col);
-        pieces[row][col] = null;
+        GamePiece p = this.pieces[row][col];
+        this.pieces[row][col] = null;
         return p;
     }
 
@@ -134,7 +131,7 @@ public class GameBoard {
      * @return returns the GamePiece at the index, returns null if no piece is there
      */
     public GamePiece getPiece (int row, int col) {
-        return pieces[row][col];
+        return this.pieces[row][col];
     }
 
     /**
@@ -156,18 +153,18 @@ public class GameBoard {
     @Override
     public String toString () {
         String it = "";
-        for (int i = 0; i < board.length; i++) {
-            it += board[i][0];
-            if (hasPiece(i, 0)) {
-                it += "(" + pieces[i][0].toString() + ")";
+        for (int i = 0; i < this.board.length; i++) {
+            it += this.board[i][0];
+            if (this.hasPiece(i, 0)) {
+                it += "(" + this.pieces[i][0].toString() + ")";
             }
-            for (int j = 1; j < board[i].length; j++) {
-                it += " | " + board[i][j];
-                if (hasPiece(i, j)) {
-                    it += "(" + pieces[i][j].toString() + ")";
+            for (int j = 1; j < this.board[i].length; j++) {
+                it += " | " + this.board[i][j];
+                if (this.hasPiece(i, j)) {
+                    it += "(" + this.pieces[i][j].toString() + ")";
                 }
             }
-            if (i != board.length - 1) {
+            if (i != this.board.length - 1) {
                 it += '\n';
             }
         }
@@ -180,14 +177,14 @@ public class GameBoard {
      * All GamePieces on the board are removed
      */
     public void resetBoard() {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (!(board[i][j].equals("Start") || board[i][j].equals("End"))) {
-                    board[i][j] = "Empty";
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[i].length; j++) {
+                if (!(this.board[i][j].equals("Start") || this.board[i][j].equals("End"))) {
+                    this.board[i][j] = "Empty";
                 }
             }
         }
-        pieces = new GamePiece[board.length][board[0].length];
+        this.pieces = new GamePiece[this.board.length][this.board[0].length];
     }
 
     /**
@@ -200,9 +197,9 @@ public class GameBoard {
         if (tiles == null || tiles.length == 0) {
             return;
         }
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                board[i][j] = tiles[iter%tiles.length];
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[i].length; j++) {
+                this.board[i][j] = tiles[iter%tiles.length];
                 iter++;
             }
         }

@@ -57,12 +57,18 @@ public class GamePiece {
 
     /**
      * Method that checks if two game pieces are equal (all 3 variables must be equal)
-     * @param other the other GamePiece object to be compared
+     * @param othe the other GamePiece object to be compared
      * @return returns true if all three variables are equal, otherwise returns false
      */
     @Override
     public boolean equals(Object othe) {
-        GamePiece other = (GamePiece)othe;
+        if (othe == null) {
+            return false;
+        }
+        if (othe.getClass() != this.getClass()) {
+            return false;
+        }
+        GamePiece other = (GamePiece)othe; // null ?
         //maybe add some more checks ? idk
         return (this.label.equals(other.getLabel()) && this.color.equals(other.getColor())) && this.pointValue==other.getPointValue();
     }

@@ -20,7 +20,7 @@ public class TileStack {
      * Default constructor for TileStack that creates an empty ArrayList to act as the stack. 
      */
     public TileStack () {
-        stack = new ArrayList<String>();
+        this.stack = new ArrayList<String>();
     }
 
     /**
@@ -28,7 +28,7 @@ public class TileStack {
      * @return the number of elements in the stack (int)
      */
     public int size() {
-        return stack.size();
+        return this.stack.size();
     }
 
     /**
@@ -37,11 +37,10 @@ public class TileStack {
      * @throws NullPointerException Throws NullPointerException if the tile is null
      */
     public void push(String tile) throws NullPointerException {
-        //do nothing if the tile is null or EMPTY?? what does that mean bruv like "" or "empty" or typo
         if (tile == null) {
             throw new NullPointerException("Tile cannot be null");
         }
-        stack.add(tile);
+        this.stack.add(tile);
     }
 
     /**
@@ -49,12 +48,10 @@ public class TileStack {
      * @return Returns the String tile that was at the top of the stack
      */
     public String pop() {
-        if (size() == 0) {
+        if (this.stack.size() == 0) {
             return null;
         }
-        String p = stack.get(size()-1);
-        stack.remove(size()-1);
-        return p;
+        return this.stack.remove(size()-1); 
     }
 
     /**
@@ -62,10 +59,10 @@ public class TileStack {
      * @return Returns the top tile (String) of the stack
      */
     public String peek() {
-        if (size() == 0) {
+        if (this.stack.size() == 0) {
             return null;
         }
-        return stack.get(size()-1);
+        return this.stack.get(this.stack.size()-1);
     }
 
     /**
@@ -73,27 +70,27 @@ public class TileStack {
      * @return Returns the stack as a String array
      */
     public String[] removeAll() {
-        String[] temp = new String[size()];
-        for (int i = 0; i < size(); i++) {
-            temp[i] = stack.get(i);
+        String[] temp = new String[this.stack.size()];
+        for (int i = 0; i < this.stack.size(); i++) {
+            temp[i] = this.stack.get(i);
         }
-        stack = new ArrayList<String>();
+        this.stack.clear();
         return temp;
     }
 
     /**
      * Overrides toString; method that converts the stack into a String representation
-     * Format goes "elementn, elementn-1, ... , element1"
+     * Format goes "element_n, element_n-1, ... , element_1"
      * @return Returns String representation of the stack.
      */
     @Override
     public String toString () {
-        if (size()==0) {
+        if (this.stack.size()==0) {
             return "";
         }
-        String it = stack.get(size()-1);
-        for (int i = size()-2; i >= 0; i--) {
-            it += ", " + stack.get(i);
+        String it = this.stack.get(this.stack.size()-1);
+        for (int i = this.stack.size()-2; i >= 0; i--) {
+            it += ", " + this.stack.get(i);
         }
         return it;
     }
