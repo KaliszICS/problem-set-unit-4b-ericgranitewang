@@ -47,7 +47,7 @@ public class GamePiece {
     }
 
     /**
-     * Represents the piece as a string; overriden from the original toString() method
+     * Represents the piece as a string; overridden from the original toString() method
      * @return returns the String representation of a GamePiece in format "color label" (e.g. black pawn)
      */
     @Override
@@ -65,13 +65,16 @@ public class GamePiece {
         if (other == null) {
             return false;
         }
+        if (!(other instanceof GamePiece)) {
+            return false;
+        }
         GamePiece othe = (GamePiece)other; 
         //maybe add some more checks ? idk
         return (this.label.equals(othe.getLabel()) && this.color.equals(othe.getColor())) && this.pointValue==othe.getPointValue();
     }
 
     /**
-     * New override method for HashCode to make things work better
+     * Method that returns the hashcode of the GamePiece, overriden method
      * @return returns the hash of the object
      */
     @Override

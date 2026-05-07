@@ -45,18 +45,18 @@ public class TileStack {
 
     /**
      * Method that removes and returns the top element of the stack
-     * @return Returns the String tile that was at the top of the stack
+     * @return Returns the String tile that was at the top of the stack, returns null if stack is empty
      */
     public String pop() {
         if (this.stack.size() == 0) {
             return null;
         }
-        return this.stack.remove(size()-1); 
+        return this.stack.remove(this.stack.size()-1); 
     }
 
     /**
      * Method that returns the top element of the stack
-     * @return Returns the top tile (String) of the stack
+     * @return Returns the top tile (String) of the stack, returns null if stack is empty
      */
     public String peek() {
         if (this.stack.size() == 0) {
@@ -79,8 +79,8 @@ public class TileStack {
     }
 
     /**
-     * Overrides toString; method that converts the stack into a String representation
-     * Format goes "element_n, element_n-1, ... , element_1"
+     * Overrides toString; method that converts the stack into a String representation with a list of tiles starting from the top of the stack
+     * Format goes "element_n, element_n-1, ... , element_1."
      * @return Returns String representation of the stack.
      */
     @Override
@@ -92,6 +92,7 @@ public class TileStack {
         for (int i = this.stack.size()-2; i >= 0; i--) {
             it += ", " + this.stack.get(i);
         }
+        it += ".";
         return it;
     }
 }

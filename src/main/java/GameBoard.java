@@ -124,9 +124,9 @@ public class GameBoard {
         if (!this.hasPiece(row, col)) {
             throw new NullPointerException("there must be a piece at the given index");
         }
-        GamePiece p = this.pieces[row][col];
+        GamePiece temp = this.pieces[row][col];
         this.pieces[row][col] = null;
-        return p;
+        return temp;
     }
 
     /**
@@ -143,7 +143,7 @@ public class GameBoard {
      * Method that checks if there is a piece at a given index on the board
      * @param row row (int, zero indexed) of index to be checked
      * @param col column (int, zero indexed) of index to be checked
-     * @return returns true if there is a piece, otherwise returns false if there isn't (if it is null)
+     * @return returns true if there is a piece, otherwise returns false if there isn't
      */
     public boolean hasPiece (int row, int col) {
         return this.pieces[row][col] != null;
@@ -198,10 +198,10 @@ public class GameBoard {
      * @param tiles the String array from which tiles are taken and put onto the board
      */
     public void fillFrom(String[] tiles) {
-        int iter = 0;
         if (tiles == null || tiles.length == 0) {
             return;
         }
+        int iter = 0;
         for (int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[i].length; j++) {
                 this.board[i][j] = tiles[iter%tiles.length];
